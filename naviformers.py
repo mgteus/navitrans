@@ -358,7 +358,7 @@ if __name__ == '__main__':
 
     out = model(xb, generate=False)
     print(model.parameters)
-    
+
 
     print(out.view(BATCH_SIZE*MAX_SEQ_LEN, VOCAB_SIZE).shape, yb.view(BATCH_SIZE*MAX_SEQ_LEN).shape)
 
