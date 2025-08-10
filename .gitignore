@@ -5,6 +5,8 @@ __pycache__/
 .nav/
 # C extensions
 *.so
+*.gzip
+
 
 # Distribution / packaging
 .Python
