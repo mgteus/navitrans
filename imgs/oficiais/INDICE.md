@@ -122,3 +122,7 @@ Pasta: [fixed/metricas_treinamento/](fixed/metricas_treinamento/)
 | ID | Gráfico | Imagem |
 | --- | --- | --- |
 | FIX-TRAIN-001 | Loss e perplexidade de treino e validação | [loss_perplexidade_treino_validacao.png](fixed/metricas_treinamento/loss_perplexidade_treino_validacao.png) |
+
+## Sargolini
+
+[Indice das 68 imagens Sargolini](sargolini/INDICE.md): 64 saidas de notebook e 4 PNG exportados.
