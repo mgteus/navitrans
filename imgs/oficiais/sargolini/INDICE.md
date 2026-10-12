@@ -1,8 +1,8 @@
 # Imagens Sargolini
 
-PNG incorporados as saidas dos tres notebooks dedicados a Sargolini, mais quatro PNG ja exportados em imgs/. Os arquivos de origem foram preservados.
+PNG incorporados as saidas dos tres notebooks dedicados a Sargolini, quatro PNG ja exportados em imgs/ e tres atlas de ativacoes da camada feedforward fornecidos pelo usuario. Os arquivos de origem foram preservados.
 
-Total: 68 imagens (64 saidas de notebook e 4 arquivos exportados). Celulas numeradas a partir de zero no JSON do notebook.
+Total: 71 imagens (64 saidas de notebook, 4 arquivos exportados e 3 atlas fornecidos pelo usuario). Celulas numeradas a partir de zero no JSON do notebook.
 
 | Imagem | Origem | Celula | SHA-256 |
 | --- | --- | ---: | --- |
@@ -74,3 +74,6 @@ Total: 68 imagens (64 saidas de notebook e 4 arquivos exportados). Celulas numer
 | [sargolini_prob_pos_treino_epoca_2000.png](exportadas/sargolini_prob_pos_treino_epoca_2000.png) | `imgs/sargolini_prob_pos_treino_epoca_2000.png` | exportado | `7b9560180bcdd353cce463a64096244d0cf3d58b505b73ddcc395d57f8f0eac7` |
 | [sargolini_prob_pre_treino.png](exportadas/sargolini_prob_pre_treino.png) | `imgs/sargolini_prob_pre_treino.png` | exportado | `1bed1514cc7077e86f9418e6dda3b8669bbbf2ce81ee5d0827cf225f08f41786` |
 | [sargolini_probs_training_progression.png](exportadas/sargolini_probs_training_progression.png) | `imgs/sargolini_probs_training_progression.png` | exportado | `3effdf30389d4d48d8cf2506c2ec85823027adc2093327193c156de7b913b48d` |
+| [atlas_ffw1_linear_gauss_smooth.png](gpt_span/transformacoes/atlas_ffw1_linear_gauss_smooth.png) | imagem fornecida pelo usuario; primeira transformacao linear, pre-ReLU | — | `3e589268382c1ef337222c6f65b331644c4bf588e99c653c4c37f3687faecf7a` |
+| [atlas_ffw1_activation_gauss_smooth.png](gpt_span/transformacoes/atlas_ffw1_activation_gauss_smooth.png) | imagem fornecida pelo usuario; ativacao apos ReLU | — | `50dff24d694cc40da6f1f86c4e77900256679da23cd27538d9b51bbe8e26dc03` |
+| [atlas_ffw2_linear_gauss_smooth.png](gpt_span/transformacoes/atlas_ffw2_linear_gauss_smooth.png) | imagem fornecida pelo usuario; segunda transformacao linear | — | `6b5283862c49414fc357183f83b83662d923c857ea6958b161d488a69ad46c27` |

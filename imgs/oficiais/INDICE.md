@@ -125,4 +125,4 @@ Pasta: [fixed/metricas_treinamento/](fixed/metricas_treinamento/)
 
 ## Sargolini
 
-[Indice das 68 imagens Sargolini](sargolini/INDICE.md): 64 saidas de notebook e 4 PNG exportados.
+[Indice das 71 imagens Sargolini](sargolini/INDICE.md): 64 saidas de notebook, 4 PNG exportados e 3 atlas de ativacoes da camada feedforward fornecidos pelo usuario.
