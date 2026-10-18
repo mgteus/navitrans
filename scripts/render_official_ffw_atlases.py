@@ -35,8 +35,8 @@ def main() -> None:
     with tempfile.TemporaryDirectory(prefix="ffw-atlas-") as scratch:
         env = os.environ.copy()
         env["HARDPOS_ANALYSIS_ROOT"] = scratch
-        env["HARDPOS_PS_GRID"] = str(ANALYSIS / "ps_grid_1001.npz")
-        env["HARDPOS_ACTIVATIONS"] = str(ROOT / "legacy/analysis/HardPos_single_token_hidden_activations.parquet")
+        env["HARDPOS_PS_GRID"] = str(ROOT / "runs/hardpos/analysis/ps_grid_1001.npz")
+        env["HARDPOS_ACTIVATIONS"] = str(ROOT / "runs/hardpos/analysis/HardPos_single_token_hidden_activations.parquet")
         subprocess.run(
             [sys.executable, str(ANALYSIS / "plot_ffw_atlases.py")],
             cwd=ROOT, env=env, check=True,

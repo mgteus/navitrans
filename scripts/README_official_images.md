@@ -20,7 +20,7 @@ As imagens GPT de Sargolini usam métricas, matrizes de similaridade e estados `
 
 ## Entradas necessárias
 
-A execução depende dos arquivos numéricos lidos pelos notebooks: datasets Parquet `bert_trainset_squared_25.gzip` e `sargolini_trainset_squared_25.gzip`, `ps_to_psid.pkl`, matrizes de similaridade, distribuições de probabilidade e logits, estados `full_fwd_*` associados a `model_tag`, métricas de treino, ativações HardPos e `results/hardpos_ps_gridness_exploration/ps_grid_1001.npz`. Muitos desses arquivos estão fora do Git ou cobertos por `.gitignore`. Assim, o comando foi validado nesta área de trabalho, mas ainda não é reproduzível a partir de um clone limpo. É necessário versionar ou publicar esses insumos numéricos com identificação de versão para cumprir esse requisito.
+A execução depende dos arquivos numéricos lidos pelos notebooks: datasets Parquet `runs/datasets/hardpos/bert_trainset_squared_25.gzip` e `runs/datasets/sargolini/sargolini_trainset_squared_25.gzip`, `runs/datasets/hardpos/ps_to_psid.pkl`, matrizes de similaridade, distribuições de probabilidade e logits, estados `full_fwd_*` associados a `model_tag`, métricas de treino, ativações HardPos e `runs/hardpos/analysis/ps_grid_1001.npz`. Muitos desses arquivos estão fora do Git ou cobertos por `.gitignore`. Assim, o comando foi validado nesta área de trabalho, mas ainda não é reproduzível a partir de um clone limpo. É necessário versionar ou publicar esses insumos numéricos com identificação de versão para cumprir esse requisito.
 
 ## Diferenças observadas na revisão
 
@@ -40,11 +40,11 @@ Há evidência numérica de que o CSV atual não é o mesmo usado para salvar as
 
 ## Organização dos CSVs
 
-Os 325 CSVs preexistentes na raiz foram movidos para `legacy/csv/`; veja `legacy/csv/MANIFEST.tsv`. Os 241 CSVs que já estavam organizados em `runs/` e `results/` permaneceram em seus diretórios. Dos 325 CSVs legados, sete já eram versionados e continuarão no Git após o commit; os outros 318 permanecem ignorados e locais.
+Os CSVs historicos permanecem apenas no arquivo local `legacy/csv/` e nao entram no Git. Os novos CSVs sao gravados em `artifacts/model_runs/<model_tag>/csv/`.
 
 Os notebooks de treino escrevem novos CSVs em `artifacts/model_runs/<model_tag>/csv/` e novos snapshots `full_fwd` em `artifacts/model_runs/<model_tag>/full_fwd/`. Cada execução tem `run.json` com a tag. Ao terminar, os treinos HardPos e Sargolini registram a execução em `artifacts/model_runs/active.json`. Os dois notebooks de visualização leem essa tag e `load_csv_path` rejeita nomes de CSV com outra tag. A verificação é de identidade da execução, sem exigir números iguais aos de uma rodada anterior.
 
-Para usar artefatos já existentes sem repetir o treinamento, `scripts/activate_legacy_run.py` copia os CSVs necessários de `legacy/csv/`, os snapshots de `legacy/full_fwd/<model_tag>/`, os checkpoints de `legacy/checkpoints/<model_tag>/` e as sequências de `legacy/generations/<model_tag>/` e as análises dinâmicas de `legacy/analysis/` para a pasta ativa e registra essa execução:
+Quando o arquivo local `legacy/` estiver disponivel, `scripts/activate_legacy_run.py` pode copiar resultados historicos para `artifacts/model_runs/`. Os notebooks de treino, geracao de datasets e visualizacao nao dependem desse arquivo:
 
 ```bash
 .nav/bin/python scripts/activate_legacy_run.py --group fixed --model-tag HardPos_embed16_context10_epochs1000_
@@ -57,10 +57,10 @@ Neste workspace, a tag HardPos ativa é `HardPos_embed16_context10_epochs1000_` 
 
 Os 200 arquivos `full_fwd*` que estavam na raiz foram preservados, com os mesmos nomes e bytes, em `legacy/full_fwd/<model_tag>/`. O inventário está em `legacy/full_fwd/MANIFEST.tsv`. Os arquivos binários legados continuam locais e ignorados pelo Git. A ativação das tags HardPos e Sargolini copiadas para `artifacts/model_runs/` mantém a visualização e a regeneração das imagens funcionais sem retornar arquivos à raiz. Novas execuções gravam os snapshots diretamente na pasta da sua tag; a leitura recusa nomes pertencentes a outra tag.
 
-A raiz mantém apenas os dois datasets de treinamento `bert_trainset_squared_25.gzip` (HardPos) e `sargolini_trainset_squared_25.gzip` (Sargolini), além de `ps_to_psid.pkl`. Os outros 64 arquivos binários e de análise foram arquivados por tipo em `legacy/`, sem alterar seus nomes; veja `legacy/ROOT_ARTIFACTS.tsv`. As referências dos notebooks e scripts ativos foram ajustadas para esses caminhos. Os checkpoints e as sequências geradas dos treinos HardPos futuros são gravados em `artifacts/model_runs/<model_tag>/checkpoints/` e `generations/`. Os mapas e ativações de uma execução nova ficam em `artifacts/model_runs/<model_tag>/analysis/`.
+Os insumos versionados de HardPos e Sargolini estao em `runs/datasets/`, incluindo os dois datasets de treino, o mapeamento HardPos, a base espacial Sargolini e os arquivos auxiliares. Em `runs/hardpos/analysis/`, apenas a tabela de ativacoes e a grade de PS usadas pelos tres atlas FFW entram no Git. Os checkpoints historicos `.pt` e os demais intermediarios ficam locais e ignorados; analises que usam esses pesos exigem treino ou transferencia para outra maquina. Os demais arquivos antigos permanecem apenas no arquivo local `legacy/`.
 
-Os arquivos Parquet de análise e os arquivos binários legados ignorados continuam locais. Um clone limpo com apenas os três insumos de treino ainda precisa executar o treino e as análises intermediárias para gerar todos os gráficos oficiais.
+Os demais Parquet e NPZ de analise, os checkpoints e os binarios legados ignorados continuam locais. Um clone limpo ainda precisa executar o treino e gerar os CSVs e snapshots associados ao model_tag para reproduzir todos os graficos oficiais.
 
 ## Identidade PS→ID do HardPos
 
-O treino novo lê `ps_to_psid.pkl` da raiz e salva uma cópia com hash na pasta de sua execução. O `model_tag` inclui a impressão digital desse mapeamento. As visualizações HardPos usam o mapeamento da tag ativa, não recriam IDs com `ngroup()`. A execução legada `HardPos_embed16_context10_epochs1000_` usa o mapeamento compacto de 947 PS que corresponde às suas matrizes de 948 colunas. O pkl da raiz contém os mesmos IDs para esses 947 PS e mais 110 estados não observados no dataset. A coluna `position_state_id` gravada no Parquet segue outra convenção e é substituída no treino. Para treinar em outro computador, siga `scripts/README_hardpos_training.md`.
+O treino novo lê `runs/datasets/hardpos/ps_to_psid.pkl` da raiz e salva uma cópia com hash na pasta de sua execução. O `model_tag` inclui a impressão digital desse mapeamento. As visualizações HardPos usam o mapeamento da tag ativa, não recriam IDs com `ngroup()`. A execução legada `HardPos_embed16_context10_epochs1000_` usa o mapeamento compacto de 947 PS que corresponde às suas matrizes de 948 colunas. O pkl da raiz contém os mesmos IDs para esses 947 PS e mais 110 estados não observados no dataset. A coluna `position_state_id` gravada no Parquet segue outra convenção e é substituída no treino. Para treinar em outro computador, siga `scripts/README_hardpos_training.md`.

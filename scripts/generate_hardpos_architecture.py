@@ -14,7 +14,7 @@ import visualtorch
 
 ROOT = Path(__file__).resolve().parent
 NOTEBOOK = ROOT / "navitran_vizz_reboot_gpt_squared_25_span.ipynb"
-CHECKPOINT = ROOT / "legacy/checkpoints/HardPos_/gpt_model_HardPos_.pt"
+CHECKPOINT = ROOT / "runs/hardpos/checkpoints/gpt_model_HardPos_.pt"
 OUTPUT = ROOT / "outputs" / "visualtorch"
 
 def load_model() -> nn.Module:

@@ -80,7 +80,7 @@ def smooth_discrete_map(discrete, support):
 
 
 def main():
-    with np.load(Path(os.environ.get("HARDPOS_PS_GRID", Path(__file__).resolve().parent / "ps_grid_1001.npz")), allow_pickle=False) as data:
+    with np.load(Path(os.environ.get("HARDPOS_PS_GRID", ROOT / "runs/hardpos/analysis/ps_grid_1001.npz")), allow_pickle=False) as data:
         ps_grid = data["ps_id"]
     if ps_grid.shape != (1001, 1001):
         raise ValueError(f"Malha APD inesperada: {ps_grid.shape}")
@@ -89,7 +89,7 @@ def main():
     fine_indices = np.rint(np.linspace(0, 1000, GRID_SIZE)).astype(int)
     sampled_ps = ps_grid[np.ix_(fine_indices, fine_indices)]
 
-    table = pd.read_parquet(Path(os.environ.get('HARDPOS_ACTIVATIONS', ROOT / 'legacy/analysis/HardPos_single_token_hidden_activations.parquet')))
+    table = pd.read_parquet(Path(os.environ.get('HARDPOS_ACTIVATIONS', ROOT / 'runs/hardpos/analysis/HardPos_single_token_hidden_activations.parquet')))
     table = table.sort_values("input_ps_id")
     ids = table["input_ps_id"].to_numpy(dtype=int)
     if not np.array_equal(ids, np.arange(len(ids))):

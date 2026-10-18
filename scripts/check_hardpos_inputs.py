@@ -16,9 +16,9 @@ from project_support.csv_runs import _tag
 
 
 def main() -> None:
-    dataset_path = ROOT / "bert_trainset_squared_25.gzip"
-    mapping_path = ROOT / "ps_to_psid.pkl"
-    sargolini_path = ROOT / "sargolini_trainset_squared_25.gzip"
+    dataset_path = ROOT / "runs/datasets/hardpos/bert_trainset_squared_25.gzip"
+    mapping_path = ROOT / "runs/datasets/hardpos/ps_to_psid.pkl"
+    sargolini_path = ROOT / "runs/datasets/sargolini/sargolini_trainset_squared_25.gzip"
     for path in (dataset_path, mapping_path, sargolini_path):
         if not path.is_file():
             raise FileNotFoundError(path)
@@ -26,7 +26,7 @@ def main() -> None:
     df = pd.read_parquet(dataset_path, columns=["position_state"])
     mapping = pickle.loads(mapping_path.read_bytes())
     if not isinstance(mapping, dict) or not mapping:
-        raise ValueError("ps_to_psid.pkl must contain a nonempty dictionary")
+        raise ValueError("runs/datasets/hardpos/ps_to_psid.pkl must contain a nonempty dictionary")
     if not all(isinstance(key, str) for key in mapping):
         raise ValueError("PS keys must be strings")
     ids = list(mapping.values())
@@ -37,7 +37,7 @@ def main() -> None:
     observed = set(df["position_state"])
     missing = observed - mapping.keys()
     if missing:
-        raise ValueError(f"{len(missing)} training PS are missing from ps_to_psid.pkl")
+        raise ValueError(f"{len(missing)} training PS are missing from runs/datasets/hardpos/ps_to_psid.pkl")
     mapped_ids = df["position_state"].map(mapping)
     if mapped_ids.isna().any():
         raise ValueError("The training sequence contains unmapped PS")

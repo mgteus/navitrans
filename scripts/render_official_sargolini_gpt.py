@@ -53,8 +53,8 @@ def build_plot_notebook(source):
         code = source.cells[number].source
         if number == 8:
             code = code.replace(
-                "/home/mgteus/workspace/navitrans/sargolini_trainset_squared_25.gzip",
-                "sargolini_trainset_squared_25.gzip",
+                "/home/mgteus/workspace/navitrans/runs/datasets/sargolini/sargolini_trainset_squared_25.gzip",
+                "runs/datasets/sargolini/sargolini_trainset_squared_25.gzip",
             )
         cells.append(nbformat.v4.new_code_cell(code))
 

@@ -106,9 +106,9 @@ def main() -> None:
             shutil.copy2(source, target)
     if args.group == "fixed":
         # The archived 948-column matrices used compact ngroup IDs, unlike
-        # the current root ps_to_psid.pkl. Keep that convention with this run.
+        # the current root runs/datasets/hardpos/ps_to_psid.pkl. Keep that convention with this run.
         import pandas as pd
-        dataset = pd.read_parquet(ROOT / "bert_trainset_squared_25.gzip")
+        dataset = pd.read_parquet(ROOT / "runs/datasets/hardpos/bert_trainset_squared_25.gzip")
         states = dataset["position_state"]
         compact_ids = states.groupby(states).ngroup()
         legacy_mapping = {

@@ -93,8 +93,8 @@ def map_notebook_images() -> dict[int, list[str]]:
 
 
 def render_visits(output: Path) -> None:
-    df = pd.read_parquet(ROOT / "bert_trainset_squared_25.gzip")
-    with (ROOT / "ps_to_psid.pkl").open("rb") as source:
+    df = pd.read_parquet(ROOT / "runs/datasets/hardpos/bert_trainset_squared_25.gzip")
+    with (ROOT / "runs/datasets/hardpos/ps_to_psid.pkl").open("rb") as source:
         ps_to_psid = pickle.load(source)
     state_ids = df["position_state"].map(ps_to_psid)
     if state_ids.isna().any():
