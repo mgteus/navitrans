@@ -1,0 +1,9 @@
+# Os demais CSVs legados permanecem locais; estes sete já eram versionados.
+*.csv
+!apd.csv
+!bert_trainset.csv
+!df_trainset_v0.csv
+!df_trainset_v1.csv
+!df_trainset_v2.csv
+!df_trainset_v3.csv
+!results_100_objs.csv

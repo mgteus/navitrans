@@ -1,3 +1,4 @@
+from csv_runs import load_notebook_csv_path
 import torch 
 import torch.nn as nn
 import math
@@ -261,7 +262,7 @@ class DecoderTransformer(nn.Module):
     
 
 if __name__ == '__main__':
-    df = pd.read_csv(r'df_trainset_v0.csv')
+    df = pd.read_csv(load_notebook_csv_path('datasets', 'df_trainset_v0.csv'))
         # PARAMETERS
     DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
     print('device: ', DEVICE)

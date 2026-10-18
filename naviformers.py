@@ -1,3 +1,4 @@
+from csv_runs import load_notebook_csv_path
 import torch 
 import torch.nn as nn
 import math
@@ -303,7 +304,7 @@ class DecoderTransformer(nn.Module):
         return out
 
 if __name__ == '__main__':
-    df = pd.read_csv(r'df_trainset_v0.csv')
+    df = pd.read_csv(load_notebook_csv_path('datasets', 'df_trainset_v0.csv'))
     positions = df['position_state'].values
     unique_posisionts = df['position_state'].unique()
     # print(len(positions))

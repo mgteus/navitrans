@@ -172,3 +172,17 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# pkl files
+full_fwd*
+!legacy/full_fwd/
+legacy/full_fwd/*/
+
+# Entradas necessárias para treinar HardPos e Sargolini.
+!bert_trainset_squared_25.gzip
+!sargolini_trainset_squared_25.gzip
+!ps_to_psid.pkl
+
+# Arquivo anteriormente versionado, agora preservado em legacy.
+!legacy/datasets/apd.gzip
