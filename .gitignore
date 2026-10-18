@@ -9,6 +9,9 @@ __pycache__/
 *.pkl
 *.pt
 *.csv
+*.parquet
+*.npy
+*.npz
 # Distribution / packaging
 .Python
 build/
@@ -172,3 +175,50 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# Arquivos locais e historicos. O conteudo permanece no disco.
+/legacy/
+/results/**
+!/results/hardpos_ps_gridness_exploration/
+!/results/hardpos_ps_gridness_exploration/analyze_hardpos_spatial.py
+!/results/hardpos_ps_gridness_exploration/analyze_notebook_grid25.py
+!/results/hardpos_ps_gridness_exploration/hardpos_atlas_three_epochs.py
+!/results/hardpos_ps_gridness_exploration/plot_ffw_atlases.py
+!/results/hardpos_ps_gridness_exploration/robustness_checks.py
+/runs/**
+!/runs/datasets/
+!/runs/datasets/hardpos/
+!/runs/datasets/sargolini/
+!/runs/datasets/shared/
+!/runs/datasets/README.md
+!/runs/hardpos/
+!/runs/hardpos/analysis/
+/output/
+/outputs/
+/tmp/
+
+# Exportacoes de notebooks e imagens geradas.
+/*.html
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+
+# Somente as imagens oficiais entram no repositorio.
+!imgs/oficiais/**
+
+# Checkpoints e tabelas de forward gerados fora de artifacts/.
+full_fwd*
+
+# Insumos canonicos dos notebooks. Os demais artefatos de runs/ ficam locais.
+!/runs/datasets/hardpos/bert_trainset_squared_25.gzip
+!/runs/datasets/hardpos/ps_to_psid.pkl
+!/runs/datasets/sargolini/sargolini_trainset_squared_25.gzip
+!/runs/datasets/sargolini/sargolini_trainset_squared_25__all.gzip
+!/runs/datasets/shared/CUES_LIST.pkl
+!/runs/datasets/shared/objects_name_list.pkl
+!/runs/hardpos/analysis/HardPos_single_token_hidden_activations.parquet
+!/runs/hardpos/analysis/ps_grid_1001.npz
