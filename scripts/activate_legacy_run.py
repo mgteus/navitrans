@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from csv_runs import register_ps_mapping, register_active_run, save_csv_path, save_full_fwd_path, save_checkpoint_path, save_generation_path, save_analysis_path
+from project_support.csv_runs import register_ps_mapping, register_active_run, save_csv_path, save_full_fwd_path, save_checkpoint_path, save_generation_path, save_analysis_path
 
 NAMES = {
     "fixed": (

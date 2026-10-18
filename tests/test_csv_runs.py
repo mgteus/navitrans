@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-import csv_runs
+from project_support import csv_runs
 
 
 class CsvRunIdentityTest(unittest.TestCase):

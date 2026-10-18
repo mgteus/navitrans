@@ -9,7 +9,7 @@ import re
 from numbers import Integral
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 RUNS = ROOT / "artifacts" / "model_runs"
 ACTIVE = RUNS / "active.json"
 VALID_TAG = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.+-]*\Z")

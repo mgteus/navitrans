@@ -1,4 +1,4 @@
-from csv_runs import load_notebook_csv_path
+from project_support.csv_runs import load_notebook_csv_path
 import torch 
 import torch.nn as nn
 import math

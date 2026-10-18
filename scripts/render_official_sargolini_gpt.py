@@ -64,7 +64,7 @@ def build_plot_notebook(source):
     for number in (1, 8, 11, 15):
         add_source(number)
     add_bootstrap("""
-from csv_runs import active_model_tag, load_csv_path, load_full_fwd_path
+from project_support.csv_runs import active_model_tag, load_csv_path, load_full_fwd_path
 model_tag = active_model_tag('sargolini')
 metrics = pd.read_csv(load_csv_path(model_tag, f'{model_tag}_train_metrics.csv'))
 num_epochs = len(metrics)

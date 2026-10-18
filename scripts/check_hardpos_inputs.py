@@ -12,7 +12,7 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from csv_runs import _tag
+from project_support.csv_runs import _tag
 
 
 def main() -> None:

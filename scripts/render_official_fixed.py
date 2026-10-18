@@ -30,7 +30,7 @@ from nbclient import NotebookClient
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from csv_runs import active_model_tag, load_csv_path
+from project_support.csv_runs import active_model_tag, load_csv_path
 SOURCE = ROOT / "apd_vizz_gpt_squared_25 HardPos.ipynb"
 ARCHIVE = ROOT / "imgs/oficiais/fixed"
 
